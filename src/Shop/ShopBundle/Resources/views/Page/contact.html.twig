@@ -1,0 +1,25 @@
+{# src/Shop/ShopBundle/Resources/views/Page/index.html.twig #}
+{% extends 'ShopBundle::layouts.html.twig' %}
+
+{% block title %}Контакты{% endblock%}
+
+{% block body %}
+    <header>
+        <h1>Наши контакты</h1>
+    </header>
+
+    <p>Свяжитесь с нами: </p>
+
+    {{ form_start(form, { 'action': path('ShopBundle_contact'), 'method': 'POST', 'attr': {'class': 'shop'} }) }}
+    {{ form_errors(form) }}
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.subject) }}
+    {{ form_row(form.body) }}
+
+    {{ form_rest(form) }}
+
+    <input type="submit" value="Отправить" />
+
+{% endblock %}

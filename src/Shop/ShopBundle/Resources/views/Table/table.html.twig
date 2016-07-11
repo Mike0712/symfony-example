@@ -1,0 +1,32 @@
+{% extends 'ShopBundle::layouts.html.twig' %}
+
+{% block title %}Таблица товаров{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Название товара</th>
+                <th>Цена на товар</th>
+                <th>Список фото</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for good in goods %}
+            <tr>
+                <td>{{ good.getTitle() }}</td>
+                <td>{{ good.getPrice().0.getPrice() }}</td> <!--0 означает тип записи №1 т.к в php счет начинается с 0 -->
+                <td>
+                    {% for photo in good.getPhoto() %}
+                        <p>{{ photo.getBasename() }}</p>
+                        {% else %}
+                        нет фото
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
