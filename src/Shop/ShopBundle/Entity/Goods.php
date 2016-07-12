@@ -4,49 +4,24 @@ namespace Shop\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="goods")
- */
-
 class Goods
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
     protected $id;
-    /**
-     * @ORM\column(type="string", length=100)
-     */
+
     protected $title;
-    /**
-     * @ORM\column(type="text")
-     */
+
     protected $description;
-    /**
-     * @ORM\OneToMany(
-     *     targetEntity="Prices",
-     *     mappedBy="goods"
-     * )
-     */
+
     protected $price;
-    /**
-     * @ORM\OneToMany(
-     *     targetEntity="Photos",
-     *     mappedBy="goods"
-     * )
-     */
+
     protected $photo;
     /**
-     * Get id
-     *
-     * @return integer
+     * Constructor
      */
-    public function getId()
+    public function __construct()
     {
-        return $this->id;
+        $this->price = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->photo = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -65,7 +40,7 @@ class Goods
     /**
      * Get title
      *
-     * @return string
+     * @return string 
      */
     public function getTitle()
     {
@@ -88,18 +63,21 @@ class Goods
     /**
      * Get description
      *
-     * @return string
+     * @return string 
      */
     public function getDescription()
     {
         return $this->description;
     }
+
     /**
-     * Constructor
+     * Get id
+     *
+     * @return integer 
      */
-    public function __construct()
+    public function getId()
     {
-        $this->price = new \Doctrine\Common\Collections\ArrayCollection();
+        return $this->id;
     }
 
     /**
@@ -128,7 +106,7 @@ class Goods
     /**
      * Get price
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getPrice()
     {
@@ -161,23 +139,10 @@ class Goods
     /**
      * Get photo
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getPhoto()
     {
         return $this->photo;
-    }
-
-    /**
-     * Set price
-     *
-     * @param \Shop\ShopBundle\Entity\Prices $price
-     * @return Goods
-     */
-    public function setPrice(\Shop\ShopBundle\Entity\Prices $price = null)
-    {
-        $this->price = $price;
-
-        return $this;
     }
 }

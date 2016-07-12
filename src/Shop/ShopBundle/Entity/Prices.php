@@ -3,42 +3,16 @@
 namespace Shop\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-/**
- * @ORM\Entity
- * @ORM\Table(name="prices", uniqueConstraints={@ORM\UniqueConstraint(name="price_type_id_goods_id",columns={"price_type_id", "goods_id"})})
- */
+
 class Prices
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
     protected $id;
-    /**
-     * @ORM\Column(type="integer")
-     */
+
     protected $price_type_id;
-    /**
-     * @ORM\ManyToOne(
-     *  targetEntity="Goods",
-     *  inversedBy="price"
-     * )
-     */
+
     protected $goods;
-    /**
-     * @ORM\Column(type="integer")
-     */
+
     protected $price;
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set price_type_id
@@ -56,34 +30,11 @@ class Prices
     /**
      * Get price_type_id
      *
-     * @return integer
+     * @return integer 
      */
     public function getPriceTypeId()
     {
         return $this->price_type_id;
-    }
-
-    /**
-     * Set goods_id
-     *
-     * @param integer $goodsId
-     * @return Prices
-     */
-    public function setGoodsId($goodsId)
-    {
-        $this->goods_id = $goodsId;
-
-        return $this;
-    }
-
-    /**
-     * Get goods_id
-     *
-     * @return integer
-     */
-    public function getGoodsId()
-    {
-        return $this->goods_id;
     }
 
     /**
@@ -102,7 +53,7 @@ class Prices
     /**
      * Get price
      *
-     * @return integer
+     * @return integer 
      */
     public function getPrice()
     {
@@ -110,12 +61,22 @@ class Prices
     }
 
     /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * Set goods
      *
-     * @param integer $goods
+     * @param \Shop\ShopBundle\Entity\Goods $goods
      * @return Prices
      */
-    public function setGoods($goods)
+    public function setGoods(\Shop\ShopBundle\Entity\Goods $goods = null)
     {
         $this->goods = $goods;
 
@@ -125,7 +86,7 @@ class Prices
     /**
      * Get goods
      *
-     * @return integer
+     * @return \Shop\ShopBundle\Entity\Goods 
      */
     public function getGoods()
     {
